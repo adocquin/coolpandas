@@ -18,6 +18,6 @@ jobs:
       - name: Black Formatting test
         run: black --config=pyproject.toml redpandas
       - name: Pylint Style test
-        run: pylint --rcfile=pyproject.toml redpandas
+        run: pylint -rn --fail-under=7 --rcfile=pyproject.toml redpandas
       - name: isort imports test
         run: isort redpandas
