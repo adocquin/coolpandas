@@ -13,6 +13,7 @@ RedPandas: A Python package for Exploratory Data Analysis.
 Execute:
 
 ```bash
+pip install -r requirements.txt
 pre-commit install
 pre-commit autoupdate
 ```

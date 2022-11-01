@@ -1,17 +1,8 @@
-"""Test plot.py module."""
+"""Test barplot.py functions."""
 import plotly.graph_objects as go
 from numpy.testing import assert_equal
 
 from redpandas import plot
-
-
-def test_format_title() -> None:
-    """Test format_title function."""
-    assert plot.format_title("Test") == "<b>Test</b>"
-    assert (
-        plot.format_title("Test", "Subtitle")
-        == '<b>Test</b><br><span style="font-size: 14px;">Subtitle</span>'
-    )
 
 
 def test_barplot(test_dataframe) -> None:

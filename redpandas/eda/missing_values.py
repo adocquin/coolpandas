@@ -1,7 +1,33 @@
-"""RedPandas main EDA functions."""
+"""RedPandas missing_values functions."""
 import pandas as pd
 
-from .plot import barplot
+from ..plot import barplot
+
+
+def plot_missing_values(null_data_frame: pd.DataFrame) -> None:
+    """Plot missing values statistics for a DataFrame.
+
+    Args:
+        data_frame (pd.DataFrame): DataFrame to plot missing values statistics.
+    """
+    fig = barplot(
+        null_data_frame,
+        x_axis="column",
+        y_axis="percentage",
+        title="Missing values",
+        hover_data={
+            "null_values": True,
+        },
+        labels={
+            "column": "Column",
+            "null_values": "Missing values",
+            "percentage": "Percentage",
+        },
+        subtitle="Missing values per column in DataFrame.",
+        text="null_values",
+    )
+    fig.update_layout(yaxis={"ticksuffix": "%", "range": [0, 100]})
+    fig.show()
 
 
 def missing_values(data_frame: pd.DataFrame, plot: bool = True) -> pd.DataFrame:
@@ -25,22 +51,7 @@ def missing_values(data_frame: pd.DataFrame, plot: bool = True) -> pd.DataFrame:
         null_data_frame["null_values"] / data_frame.shape[0] * 100, 2
     )
     null_data_frame = null_data_frame[null_data_frame["null_values"] > 0]
+    null_data_frame = null_data_frame.reset_index(drop=True)
     if plot:
-        fig = barplot(
-            null_data_frame,
-            x_axis="column",
-            y_axis="percentage",
-            title="Missing values",
-            hover_data={
-                "null_values": True,
-            },
-            labels={
-                "column": "Column",
-                "null_values": "Missing values",
-                "percentage": "Percentage",
-            },
-            subtitle="Percentage of missing values per column",
-        )
-        fig.update_yaxes(range=[0, 100])
-        fig.show()
+        plot_missing_values(null_data_frame)
     return null_data_frame
