@@ -6,7 +6,7 @@ from .features_type import (
     numerical_features,
     zero_variance_features,
 )
-from .missing_values import missing_values
+from .missing_values import get_missing_values
 from .random_state import random_state
 from .shape import shape
 from .value_counts import value_counts

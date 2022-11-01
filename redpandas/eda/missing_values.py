@@ -30,7 +30,7 @@ def plot_missing_values(null_data_frame: pd.DataFrame) -> None:
     fig.show()
 
 
-def missing_values(data_frame: pd.DataFrame, plot: bool = True) -> pd.DataFrame:
+def get_missing_values(data_frame: pd.DataFrame, plot: bool = True) -> pd.DataFrame:
     """Get columns missing values statistics for a DataFrame.
 
     Args:
