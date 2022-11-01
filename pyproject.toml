@@ -6,7 +6,7 @@ target-version = ["py311"]
 line-length = 88
 
 [tool.pylint.master]
-ignore-patterns="test_(.)*\\.py"
+ignore="tests"
 
 [tool.pylint.messages_control]
 max-line-length = 88
