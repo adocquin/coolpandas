@@ -1,4 +1,4 @@
-# RedPandas
+# 🐼 RedPandas
 
 ![main-unit-testing workflow](https://github.com/adocquin/redpandas/actions/workflows/main-unit-testing.yaml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/adocquin/redpandas/badge.svg)](https://coveralls.io/github/adocquin/redpandas)
