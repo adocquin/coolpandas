@@ -1,0 +1,27 @@
+repos:
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        args:
+          [
+            "-rn",
+            "--fail-under=7",
+            "--rcfile=pyproject.toml",
+          ]
+  - repo: https://github.com/psf/black
+    rev: 22.10.0
+    hooks:
+      - id: black
+        language_version: python3.11
+        args: [--config=pyproject.toml]
+        entry: black --check .
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        language_version: python3.11
+        args: [--settings-path=pyproject.toml]
