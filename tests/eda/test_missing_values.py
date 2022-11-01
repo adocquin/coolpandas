@@ -16,16 +16,16 @@ def test_plot_missing_values(mock_barplot: MagicMock, mock_figure: object) -> No
     mock_barplot.assert_called_once()
 
 
-@patch("redpandas.eda.missing_values.plot_missing_values")
+@patch("redpandas.eda.missing_values.barplot")
 def test_missing_values(
-    mock_plot_missing_values: MagicMock,
+    mock_barplot: MagicMock,
     test_dataframe: pd.DataFrame,
     mock_figure: object,
 ) -> None:
     """Test missing_values function."""
-    mock_plot_missing_values.return_value = mock_figure
+    mock_barplot.return_value = mock_figure
     null_data_frame: pd.DataFrame = eda.missing_values(test_dataframe, plot=False)
     assert_equal(null_data_frame["null_values"].values, [2, 1])
     assert_equal(null_data_frame["percentage"].values, [50, 25])
     eda.missing_values(test_dataframe, plot=True)
-    mock_plot_missing_values.assert_called_once()
+    mock_barplot.assert_called_once()
