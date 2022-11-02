@@ -3,5 +3,7 @@ __pycache__
 .vscode
 .coverage
 htmlcov
+dist
+coolpandas.egg-info
 notebooks
 todo.md

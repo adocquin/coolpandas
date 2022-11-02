@@ -1,4 +1,4 @@
-"""Plot functions for RedPandas."""
+"""Plot functions for CoolPandas."""
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go

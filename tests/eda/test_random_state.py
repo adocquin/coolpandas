@@ -4,7 +4,7 @@ import random
 
 import numpy as np
 
-from redpandas import eda
+from coolpandas import eda
 
 
 def test_random_state() -> None:

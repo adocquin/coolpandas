@@ -4,11 +4,11 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 from numpy.testing import assert_equal
 
-from redpandas import eda
-from redpandas.eda.value_counts import plot_value_counts
+from coolpandas import eda
+from coolpandas.eda.value_counts import plot_value_counts
 
 
-@patch("redpandas.eda.value_counts.barplot")
+@patch("coolpandas.eda.value_counts.barplot")
 def test_plot_value_counts(mock_barplot: MagicMock, mock_figure: object) -> None:
     """Test plot_value_counts function."""
     mock_barplot.return_value = mock_figure
@@ -16,7 +16,7 @@ def test_plot_value_counts(mock_barplot: MagicMock, mock_figure: object) -> None
     assert mock_barplot.called
 
 
-@patch("redpandas.eda.value_counts.barplot")
+@patch("coolpandas.eda.value_counts.barplot")
 def test_get_value_counts(
     mock_barplot: MagicMock,
     test_dataframe: pd.DataFrame,

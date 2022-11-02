@@ -4,11 +4,11 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 from numpy.testing import assert_equal
 
-from redpandas import eda
-from redpandas.eda.missing_values import plot_missing_values
+from coolpandas import eda
+from coolpandas.eda.missing_values import plot_missing_values
 
 
-@patch("redpandas.eda.missing_values.barplot")
+@patch("coolpandas.eda.missing_values.barplot")
 def test_plot_missing_values(mock_barplot: MagicMock, mock_figure: object) -> None:
     """Test plot_missing_values function."""
     mock_barplot.return_value = mock_figure
@@ -16,7 +16,7 @@ def test_plot_missing_values(mock_barplot: MagicMock, mock_figure: object) -> No
     mock_barplot.assert_called_once()
 
 
-@patch("redpandas.eda.missing_values.barplot")
+@patch("coolpandas.eda.missing_values.barplot")
 def test_get_missing_values(
     mock_barplot: MagicMock,
     test_dataframe: pd.DataFrame,

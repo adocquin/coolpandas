@@ -1,4 +1,4 @@
-"""RedPandas missing_values functions."""
+"""CoolPandas missing_values functions."""
 import pandas as pd
 
 from ..plot import barplot

@@ -3,10 +3,10 @@ from unittest.mock import MagicMock, patch
 
 import pandas as pd
 
-from redpandas import eda
+from coolpandas import eda
 
 
-@patch("redpandas.eda.shape.display", return_value=None)
+@patch("coolpandas.eda.shape.display", return_value=None)
 @patch("builtins.print")
 def test_get_shape(
     mock_print: MagicMock, mock_display: MagicMock, test_dataframe: pd.DataFrame

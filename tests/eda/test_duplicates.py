@@ -4,10 +4,10 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 from numpy.testing import assert_equal
 
-from redpandas import eda
+from coolpandas import eda
 
 
-@patch("redpandas.eda.duplicates.display", return_value=None)
+@patch("coolpandas.eda.duplicates.display", return_value=None)
 @patch("builtins.print")
 def test_duplicated_rows(
     mock_print: MagicMock, mock_display: MagicMock, test_dataframe: pd.DataFrame
@@ -35,7 +35,7 @@ def test_duplicated_rows(
     assert mock_display.call_count == 2
 
 
-@patch("redpandas.eda.duplicates.display", return_value=None)
+@patch("coolpandas.eda.duplicates.display", return_value=None)
 @patch("builtins.print")
 def test_duplicated_columns(
     mock_print: MagicMock, mock_display: MagicMock, test_dataframe: pd.DataFrame

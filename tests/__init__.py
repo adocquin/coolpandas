@@ -1,1 +1,1 @@
-"""Tests suite for RedPandas."""
+"""Tests suite for CoolPandas."""

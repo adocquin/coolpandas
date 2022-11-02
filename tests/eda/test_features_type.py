@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 import pandas as pd
 
-from redpandas import eda
+from coolpandas import eda
 
 
 @patch("builtins.print")

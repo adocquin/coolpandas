@@ -2,7 +2,7 @@
 import plotly.graph_objects as go
 from numpy.testing import assert_equal
 
-from redpandas import plot
+from coolpandas import plot
 
 
 def test_barplot(test_dataframe) -> None:

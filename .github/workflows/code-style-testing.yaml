@@ -16,8 +16,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Black Formatting test
-        run: black --config=pyproject.toml redpandas
+        run: black --config=pyproject.toml coolpandas
       - name: Pylint Style test
-        run: pylint -rn --fail-under=7 --rcfile=pyproject.toml redpandas
+        run: pylint -rn --fail-under=7 --rcfile=pyproject.toml coolpandas
       - name: isort imports test
-        run: isort redpandas
+        run: isort coolpandas

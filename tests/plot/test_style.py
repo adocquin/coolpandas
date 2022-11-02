@@ -1,5 +1,5 @@
 """Test style.py functions."""
-from redpandas.plot.style import format_title
+from coolpandas.plot.style import format_title
 
 
 def test_format_title() -> None:
