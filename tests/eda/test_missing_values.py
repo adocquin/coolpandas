@@ -22,7 +22,7 @@ def test_get_missing_values(
     test_dataframe: pd.DataFrame,
     mock_figure: object,
 ) -> None:
-    """Test missing_values function."""
+    """Test get_missing_values function."""
     mock_barplot.return_value = mock_figure
     null_data_frame: pd.DataFrame = eda.get_missing_values(test_dataframe, plot=False)
     assert_equal(null_data_frame["null_values"].values, [2, 1])

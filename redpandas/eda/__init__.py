@@ -8,5 +8,5 @@ from .features_type import (
 )
 from .missing_values import get_missing_values
 from .random_state import random_state
-from .shape import shape
-from .value_counts import value_counts
+from .shape import get_shape
+from .value_counts import get_value_counts

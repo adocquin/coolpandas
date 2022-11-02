@@ -3,7 +3,7 @@ import pandas as pd
 from IPython.display import display
 
 
-def shape(
+def get_shape(
     data_frame: pd.DataFrame, display_summary: bool = True
 ) -> dict[str, int | list[str]]:
     """Get a DataFrame shape overview.

@@ -35,7 +35,7 @@ def plot_value_counts(summary: pd.DataFrame) -> None:
     fig.show()
 
 
-def value_counts(
+def get_value_counts(
     data_frame: pd.DataFrame, column: str, plot: bool = True
 ) -> pd.DataFrame:
     """Get a DataFrame column value counts overview.

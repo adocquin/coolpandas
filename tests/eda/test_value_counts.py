@@ -17,15 +17,15 @@ def test_plot_value_counts(mock_barplot: MagicMock, mock_figure: object) -> None
 
 
 @patch("redpandas.eda.value_counts.barplot")
-def test_value_counts(
+def test_get_value_counts(
     mock_barplot: MagicMock,
     test_dataframe: pd.DataFrame,
     mock_figure: object,
 ) -> None:
-    """Test value_counts function."""
+    """Test get_value_counts function."""
     mock_barplot.return_value = mock_figure
-    summary: pd.DataFrame = eda.value_counts(test_dataframe, "Legs", plot=False)
+    summary: pd.DataFrame = eda.get_value_counts(test_dataframe, "Legs", plot=False)
     assert_equal(summary["count"].values, [2, 1, 1])
     assert_equal(summary["percentage"].values, [50, 25, 25])
-    eda.value_counts(test_dataframe, "Legs", plot=True)
+    eda.get_value_counts(test_dataframe, "Legs", plot=True)
     mock_barplot.assert_called_once()
