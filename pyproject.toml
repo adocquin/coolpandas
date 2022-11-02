@@ -26,8 +26,12 @@ classifiers = [
 "Homepage" = "https://github.com/adocquin/coolpandas"
 "Bug Tracker" = "https://github.com/adocquin/coolpandas/issues"
 
+# [tool.setuptools.packages.find]
+# where = ["coolpandas"]
+# include = ["*"]
+
 [tool.setuptools]
-packages = ["coolpandas"]
+packages = ["coolpandas", "coolpandas.eda", "coolpandas.plot"]
 
 [tool.isort]
 profile = "black"

@@ -1,7 +1,7 @@
 """value_counts function for pandas DataFrame."""
 import pandas as pd
 
-from ..plot import barplot
+from coolpandas.plot import barplot
 
 
 def plot_value_counts(summary: pd.DataFrame) -> None:

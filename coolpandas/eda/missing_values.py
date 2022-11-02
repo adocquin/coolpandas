@@ -1,7 +1,7 @@
 """CoolPandas missing_values functions."""
 import pandas as pd
 
-from ..plot import barplot
+from coolpandas.plot import barplot
 
 
 def plot_missing_values(null_data_frame: pd.DataFrame) -> None:
