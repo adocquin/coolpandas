@@ -17,9 +17,11 @@ def get_shape(
     summary: dict[str, int | list[str]] = {}
     summary["rows_number"], summary["columns_number"] = data_frame.shape
     summary["columns_name"] = data_frame.columns.tolist()
+    summary["columns_type"] = data_frame.dtypes.tolist()
     if display_summary:
         display(data_frame.head())
         print(f"Number of rows: {summary.get('rows_number')}")
         print(f"Number of columns: {summary.get('columns_number')}")
         print(f"Columns name: {summary['columns_name']}")
+        print(f"Columns type: {summary['columns_type']}")
     return summary

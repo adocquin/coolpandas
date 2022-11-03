@@ -1,4 +1,4 @@
-"""Barplot module."""
+"""Distplot module."""
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from .style import custom_template, format_title
 
 
-def barplot(
+def distplot(
     data_frame: pd.DataFrame,
     x_axis: str,
     y_axis: str,
@@ -27,16 +27,16 @@ def barplot(
     Returns:
         go.Figure: Bar plot figure.
     """
-    fig = px.bar(
+    fig = px.histogram(
         data_frame,
         x=x_axis,
         y=y_axis,
         title=format_title(title, subtitle=subtitle),
         template=custom_template,
+        marginal="box",
         width=800,
-        height=400,
+        height=500,
         **kwargs,
     )
     fig.update_xaxes(tickangle=270)
-    fig.update_traces(width=0.5)
     return fig
