@@ -10,6 +10,7 @@ from .features_type import (
     numerical_features,
     zero_variance_features,
 )
+from .geo_distance import GeoDistance
 from .missing_values import get_missing_values
 from .random_state import random_state
 from .shape import get_shape

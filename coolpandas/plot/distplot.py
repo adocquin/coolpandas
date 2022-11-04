@@ -22,6 +22,7 @@ def distplot(
         y_axis (str): Column to use as y axis.
         title (str): Title of the plot.
         subtitle (str, optional): Subtitle of the plot. Defaults to None.
+        marginal (str, optional): Marginal distribution. Defaults to None.
         **kwargs: Keyword arguments to pass to plotly.express.bar.
 
     Returns:
@@ -33,7 +34,6 @@ def distplot(
         y=y_axis,
         title=format_title(title, subtitle=subtitle),
         template=custom_template,
-        marginal="box",
         width=800,
         height=500,
         **kwargs,
