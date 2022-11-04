@@ -7,11 +7,8 @@ from numpy.testing import assert_equal
 from coolpandas import eda
 
 
-@patch("coolpandas.eda.duplicates.display", return_value=None)
 @patch("builtins.print")
-def test_duplicated_rows(
-    mock_print: MagicMock, mock_display: MagicMock, test_dataframe: pd.DataFrame
-) -> None:
+def test_duplicated_rows(mock_print: MagicMock, test_dataframe: pd.DataFrame) -> None:
     """Test duplicated_rows function."""
     duplicated_rows: pd.DataFrame = eda.duplicated_rows(
         test_dataframe, display_summary=False, drop=False
@@ -31,14 +28,12 @@ def test_duplicated_rows(
     assert_equal(
         test_dataframe_duplicated.fillna(0).values, test_dataframe.fillna(0).values
     )
-    assert mock_print.call_count == 6
-    assert mock_display.call_count == 2
+    assert mock_print.call_count == 4
 
 
-@patch("coolpandas.eda.duplicates.display", return_value=None)
 @patch("builtins.print")
 def test_duplicated_columns(
-    mock_print: MagicMock, mock_display: MagicMock, test_dataframe: pd.DataFrame
+    mock_print: MagicMock, test_dataframe: pd.DataFrame
 ) -> None:
     """Test duplicated_columns function."""
     duplicated_columns: list[str] = eda.duplicated_columns(
@@ -58,5 +53,4 @@ def test_duplicated_columns(
     assert_equal(
         test_dataframe_duplicated.columns.values, test_dataframe.columns.values
     )
-    assert mock_print.call_count == 6
-    assert mock_display.call_count == 2
+    assert mock_print.call_count == 4

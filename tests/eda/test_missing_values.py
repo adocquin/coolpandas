@@ -17,7 +17,9 @@ def test_plot_missing_values(mock_barplot: MagicMock, mock_figure: object) -> No
 
 
 @patch("coolpandas.eda.missing_values.barplot")
+@patch("builtins.print")
 def test_get_missing_values(
+    mock_print: MagicMock,
     mock_barplot: MagicMock,
     test_dataframe: pd.DataFrame,
     mock_figure: object,
@@ -28,4 +30,5 @@ def test_get_missing_values(
     assert_equal(null_data_frame["null_values"].values, [2, 1])
     assert_equal(null_data_frame["percentage"].values, [50, 25])
     eda.get_missing_values(test_dataframe, plot=True)
+    assert mock_print.call_count == 2
     mock_barplot.assert_called_once()

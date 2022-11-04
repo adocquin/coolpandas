@@ -1,5 +1,8 @@
 """Exploratory Data Analysis (EDA) module for coolpandas."""
-from .distribution import get_groupby_ordinal_distribution
+from .distribution import (
+    get_groupby_continuous_distribution,
+    get_groupby_ordinal_distribution,
+)
 from .duplicates import duplicated_columns, duplicated_rows
 from .features_type import (
     boolean_features,

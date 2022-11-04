@@ -52,6 +52,7 @@ def get_missing_values(data_frame: pd.DataFrame, plot: bool = True) -> pd.DataFr
     )
     null_data_frame = null_data_frame[null_data_frame["null_values"] > 0]
     null_data_frame = null_data_frame.reset_index(drop=True)
+    print(f"Number of rows with missing values: {null_data_frame.shape[0]}")
     if plot:
         plot_missing_values(null_data_frame)
     return null_data_frame

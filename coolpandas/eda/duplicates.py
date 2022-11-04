@@ -1,6 +1,5 @@
 """DataFrames cleaning module."""
 import pandas as pd
-from IPython.display import display
 
 
 def duplicated_rows(
@@ -17,8 +16,6 @@ def duplicated_rows(
     duplicated_data_frame: pd.DataFrame = data_frame[data_frame.duplicated()]
     if display_summary:
         print(f"Number of duplicated rows: {duplicated_data_frame.shape[0]}")
-        print("Head of duplicated rows DataFrame:")
-        display(duplicated_data_frame.head())
     if drop:
         data_frame.drop_duplicates(inplace=True)
     if display_summary and drop:
@@ -41,8 +38,6 @@ def duplicated_columns(
     duplicated_data_frame: pd.DataFrame = data_frame.T[data_frame.T.duplicated()].T
     if display_summary:
         print(f"Number of duplicated columns: {duplicated_data_frame.shape[1]}")
-        print("Head of duplicated columns DataFrame:")
-        display(duplicated_data_frame.head())
     if drop:
         data_frame.drop(columns=duplicated_data_frame.columns, inplace=True)
     if display_summary and drop:
