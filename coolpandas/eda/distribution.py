@@ -1,6 +1,7 @@
+"""Get a DataFrame column distribution overview."""
 import pandas as pd
 
-from coolpandas.plot import barplot, distplot
+from coolpandas.plot import distplot
 
 
 def plot_distribution(
@@ -19,7 +20,7 @@ def plot_distribution(
         nbins (int, optional): Number of bins. Defaults to 10.
         title (str, optional): Title of the plot. Defaults to "".
         subtitle (str, optional): Subtitle of the plot. Defaults to "".
-        marginal (str, optional): Marginal plot. Defaults to None.
+        **kwargs: Keyword arguments to pass to distplot.
     """
     column: str = summary.columns[0]
     if not title:
@@ -52,9 +53,10 @@ def plot_distribution(
     fig.show()
 
 
-def get_groupby_ordinal_distribution(
+def get_groupby_distribution(
     data_frame: pd.DataFrame,
     groupby_column: str,
+    data_type: str,
     plot: bool = True,
     **kwargs,
 ) -> pd.DataFrame:
@@ -63,19 +65,25 @@ def get_groupby_ordinal_distribution(
     Args:
         data_frame (pd.DataFrame): DataFrame to get distribution overview.
         groupby_column (str): Column to group by.
+        data_type (str): Data type to get distribution overview.
         plot (bool, optional): Plot the distribution. Defaults to True.
-        subtitle (str, optional): Subtitle of the plot. Defaults to "".
-        color (str, optional): Group to color. Defaults to "".
+        **kwargs: Keyword arguments to pass to plot_distribution.
 
     Returns:
         pd.DataFrame: DataFrame value counts summary.
     """
+    if plot and data_type == "categorical":
+        kwargs["nbins"] = data_frame[groupby_column].nunique()
+    elif plot and data_type == "numerical":
+        kwargs["marginal"] = "box"
+        if not kwargs.get("nbins"):
+            kwargs["nbins"] = 31
+    if plot and not kwargs.get("title"):
+        kwargs["title"] = f"{groupby_column} distribution"
     if plot:
         plot_distribution(
             data_frame,
             groupby_column,
-            title=f"{groupby_column} distribution",
-            nbins=data_frame[groupby_column].nunique(),
             **kwargs,
         )
     summary: pd.DataFrame = (
@@ -86,44 +94,6 @@ def get_groupby_ordinal_distribution(
         .rename(columns={0: "count"})
     )
     summary["percentage"] = round(summary["count"] / summary["count"].sum() * 100, 2)
+    if data_type == "numerical":
+        summary = summary[groupby_column].to_frame().describe()
     return summary
-
-
-def get_groupby_continuous_distribution(
-    data_frame: pd.DataFrame,
-    groupby_column: str,
-    plot: bool = True,
-    nbins: int = 31,
-    **kwargs,
-) -> pd.DataFrame:
-    """Get the distribution overview of a DataFrame continuous column grouped by size.
-
-    Args:
-        data_frame (pd.DataFrame): DataFrame to get distribution overview.
-        groupby_column (str): Column to group by.
-        plot (bool, optional): Plot the distribution. Defaults to True.
-        nbins (int, optional): Number of bins. Defaults to 31.
-        title (str, optional): Title of the plot. Defaults to "".
-        subtitle (str, optional): Subtitle of the plot. Defaults to "".
-        color (str, optional): Group to color. Defaults to "".
-
-    Returns:
-        pd.DataFrame: DataFrame value counts summary.
-    """
-    if plot:
-        plot_distribution(
-            data_frame,
-            groupby_column=groupby_column,
-            nbins=nbins,
-            marginal="box",
-            **kwargs,
-        )
-    summary: pd.DataFrame = (
-        data_frame.groupby(groupby_column)
-        .size()
-        .to_frame()
-        .reset_index()
-        .rename(columns={0: "count"})
-    )
-    summary["percentage"] = round(summary["count"] / summary["count"].sum() * 100, 2)
-    return summary[groupby_column].to_frame().describe()

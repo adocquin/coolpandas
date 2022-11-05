@@ -1,3 +1,4 @@
+"""Get a DataFrame columns summary."""
 import pandas as pd
 from IPython.display import display
 
