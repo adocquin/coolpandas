@@ -21,7 +21,7 @@ def test_duplicated_rows(mock_print: MagicMock, test_dataframe: pd.DataFrame) ->
     duplicated_rows: pd.DataFrame = eda.duplicated_rows(
         test_dataframe_duplicated, display_summary=False, drop=False
     )
-    assert len(duplicated_rows) == 4
+    assert len(duplicated_rows) == 8
 
     eda.duplicated_rows(test_dataframe_duplicated, display_summary=True, drop=False)
     eda.duplicated_rows(test_dataframe_duplicated, display_summary=True, drop=True)
@@ -46,7 +46,7 @@ def test_duplicated_columns(
     duplicated_columns: list[str] = eda.duplicated_columns(
         test_dataframe_duplicated, display_summary=False, drop=False
     )
-    assert duplicated_columns.columns == ["test"]
+    assert_equal(duplicated_columns.columns.values, ["Animal", "test"])
 
     eda.duplicated_columns(test_dataframe_duplicated, display_summary=True, drop=False)
     eda.duplicated_columns(test_dataframe_duplicated, display_summary=True, drop=True)

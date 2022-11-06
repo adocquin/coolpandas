@@ -1,4 +1,5 @@
 """Exploratory Data Analysis (EDA) module for coolpandas."""
+from .correlation import get_correlation
 from .distribution import get_groupby_distribution
 from .duplicates import duplicated_columns, duplicated_rows
 from .features_type import (

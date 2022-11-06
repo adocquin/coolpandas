@@ -44,7 +44,7 @@ def plot_distribution(
     )
     fig.update_yaxes(tickformat=".3")
     fig.update_layout(
-        yaxis={"ticksuffix": "%", "range": [0, 100]},
+        yaxis={"ticksuffix": "%"},  # , "range": [0, 100]},
         yaxis_title="Percentage",
         barmode="overlay",
     )
@@ -53,13 +53,40 @@ def plot_distribution(
     fig.show()
 
 
+def distribution_summaries(
+    data_frame: pd.DataFrame,
+    groupby_column: str,
+    data_type: str,
+    dependant_value: str = "",
+) -> pd.DataFrame:
+    if data_type == "categorical":
+        summary: pd.DataFrame = (
+            data_frame.groupby(groupby_column)
+            .size()
+            .to_frame()
+            .reset_index()
+            .rename(columns={0: "count"})
+        )
+        summary["percentage"] = round(
+            summary["count"] / summary["count"].sum() * 100, 2
+        )
+    elif data_type == "numerical":
+        summary = data_frame[groupby_column].describe().to_frame()
+    if dependant_value:
+        column_name: str = summary.columns[0]
+        summary.rename(
+            columns={column_name: f"{column_name}_{dependant_value}"}, inplace=True
+        )
+    return summary
+
+
 def get_groupby_distribution(
     data_frame: pd.DataFrame,
     groupby_column: str,
     data_type: str,
     plot: bool = True,
     **kwargs,
-) -> pd.DataFrame:
+) -> pd.DataFrame | list[pd.DataFrame]:
     """Get the distribution overview of a DataFrame ordinal column grouped by size.
 
     Args:
@@ -67,10 +94,11 @@ def get_groupby_distribution(
         groupby_column (str): Column to group by.
         data_type (str): Data type to get distribution overview.
         plot (bool, optional): Plot the distribution. Defaults to True.
+        Defaults to "".
         **kwargs: Keyword arguments to pass to plot_distribution.
 
     Returns:
-        pd.DataFrame: DataFrame value counts summary.
+        pd.DataFrame | list[pd.DataFrame]: Distribution overviews.
     """
     if plot and data_type == "categorical":
         kwargs["nbins"] = data_frame[groupby_column].nunique()
@@ -86,14 +114,18 @@ def get_groupby_distribution(
             groupby_column,
             **kwargs,
         )
-    summary: pd.DataFrame = (
-        data_frame.groupby(groupby_column)
-        .size()
-        .to_frame()
-        .reset_index()
-        .rename(columns={0: "count"})
-    )
-    summary["percentage"] = round(summary["count"] / summary["count"].sum() * 100, 2)
-    if data_type == "numerical":
-        summary = summary[groupby_column].to_frame().describe()
-    return summary
+    summaries: list[pd.DataFrame] = []
+    dependant_column: str = kwargs.get("color")
+    if not dependant_column:
+        summaries.append(distribution_summaries(data_frame, groupby_column, data_type))
+    else:
+        summaries = [
+            distribution_summaries(
+                data_frame[data_frame[dependant_column] == i],
+                groupby_column,
+                data_type,
+                str(i),
+            )
+            for i in data_frame[dependant_column].unique()
+        ]
+    return summaries[0] if not dependant_column else summaries
