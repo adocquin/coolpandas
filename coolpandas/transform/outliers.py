@@ -24,7 +24,7 @@ def iqr_outliers(
     Returns:
         pd.DataFrame: DataFrame with outliers.
     """
-    if lower_bound is not None and upper_bound is not None:
+    if lower_bound is None or upper_bound is None:
         quartile_1: float = data_frame[column].quantile(0.25)
         quartile_3: float = data_frame[column].quantile(0.75)
         iqr: float = quartile_3 - quartile_1

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "coolpandas"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
   { name="Avel Docquin", email="adocquin@outlook.com" },
   ]
@@ -27,14 +27,11 @@ classifiers = [
 "Homepage" = "https://github.com/adocquin/coolpandas"
 "Bug Tracker" = "https://github.com/adocquin/coolpandas/issues"
 
-# [tool.setuptools.packages.find]
-# where = ["coolpandas"]
-# include = ["*"]
-
 [tool.setuptools]
 packages = [
   "coolpandas",
   "coolpandas.eda",
+  "coolpandas.evaluate",
   "coolpandas.plot",
   "coolpandas.transform",
   "coolpandas.utils",
