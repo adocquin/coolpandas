@@ -1,8 +1,9 @@
 import math
 
+import numpy as np
 import pandas as pd
 
-from coolpandas.plot import correlation_map
+from coolpandas.plot import mapplot
 
 
 def get_correlation(
@@ -23,7 +24,10 @@ def get_correlation(
     truncate: callable = lambda x: math.trunc(100 * x) / 100
     correlation_matrix = correlation_matrix.applymap(truncate)
     if plot:
-        correlation_map(
-            correlation_matrix, title=f"{method.capitalize()} correlation map", **kwargs
+        mask = np.triu(np.ones_like(correlation_matrix, dtype=bool))
+        mapplot(
+            correlation_matrix.mask(mask),
+            title=f"{method.capitalize()} correlation map",
+            **kwargs,
         ).show()
     return correlation_matrix

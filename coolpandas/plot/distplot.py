@@ -38,5 +38,4 @@ def distplot(
         height=500,
         **kwargs,
     )
-    fig.update_xaxes(tickangle=270)
     return fig

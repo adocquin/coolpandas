@@ -37,6 +37,5 @@ def barplot(
         height=400,
         **kwargs,
     )
-    fig.update_xaxes(tickangle=270)
     fig.update_traces(width=0.5)
     return fig
