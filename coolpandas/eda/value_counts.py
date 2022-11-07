@@ -56,3 +56,30 @@ def get_value_counts(
     if plot:
         plot_value_counts(summary)
     return summary
+
+
+def get_groupby_value_counts(
+    data_frame: pd.DataFrame,
+    groupby_column: str,
+    plot: bool = True,
+) -> pd.DataFrame:
+    """Get the value counts overview of a DataFrame column grouped by size.
+
+    Args:
+        data_frame (pd.DataFrame): DataFrame to get value counts overview.
+        groupby_column (str): Column to group by.
+
+    Returns:
+        pd.DataFrame: DataFrame value counts summary.
+    """
+    summary: pd.DataFrame = (
+        data_frame.groupby(groupby_column)
+        .size()
+        .to_frame()
+        .reset_index()
+        .rename(columns={0: "count"})
+    )
+    summary["percentage"] = round(summary["count"] / summary["count"].sum() * 100, 2)
+    if plot:
+        plot_value_counts(summary)
+    return summary
