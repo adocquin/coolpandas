@@ -20,11 +20,12 @@ def plot_confusion_matrix(cm: np.ndarray) -> None:
             ticktext=["One", "Three", "Five", "Seven", "Nine", "Eleven"],
         )
     )
+    ticks: list[int] = [i for i in range(len(cm))]
     fig.update_layout(
         xaxis_title="Predicted label",
         yaxis_title="True Label",
-        xaxis=dict(tickmode="array", tickvals=[0, 1], ticktext=[0, 1]),
-        yaxis=dict(tickmode="array", tickvals=[0, 1], ticktext=[0, 1]),
+        xaxis=dict(tickmode="array", tickvals=ticks, ticktext=ticks),
+        yaxis=dict(tickmode="array", tickvals=ticks, ticktext=ticks),
     )
     fig.show()
 
