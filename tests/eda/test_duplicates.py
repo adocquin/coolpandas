@@ -46,7 +46,7 @@ def test_duplicated_columns(
     duplicated_columns: list[str] = eda.duplicated_columns(
         test_dataframe_duplicated, display_summary=False, drop=False
     )
-    assert_equal(duplicated_columns.columns.values, ["Animal", "test"])
+    assert_equal(duplicated_columns.columns.values, ["test"])
 
     eda.duplicated_columns(test_dataframe_duplicated, display_summary=True, drop=False)
     eda.duplicated_columns(test_dataframe_duplicated, display_summary=True, drop=True)

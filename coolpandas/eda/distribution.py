@@ -44,7 +44,7 @@ def plot_distribution(
     )
     fig.update_yaxes(tickformat=".3")
     fig.update_layout(
-        yaxis={"ticksuffix": "%"},  # , "range": [0, 100]},
+        yaxis={"ticksuffix": "%"},
         yaxis_title="Percentage",
         barmode="overlay",
     )
