@@ -3,6 +3,9 @@ __pycache__
 .vscode
 .coverage
 .python-version
+.pytest_cache
+cb_model.onnx
+encoding.json
 htmlcov
 dist
 coolpandas.egg-info
