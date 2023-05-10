@@ -4,6 +4,7 @@ __pycache__
 .coverage
 .python-version
 .pytest_cache
+.metals
 cb_model.onnx
 encoding.json
 htmlcov
