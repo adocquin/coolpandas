@@ -11,7 +11,7 @@ def geoplot(
     lat: str,
     lon: str,
     title: str,
-    subtitle: str = None,
+    subtitle: str | None = None,
     **kwargs,
 ) -> go.Figure:
     """Create a map plot based on latitude and longitude of DataFrame passed columns.

@@ -11,7 +11,7 @@ def distplot(
     x_axis: str,
     y_axis: str,
     title: str,
-    subtitle: str = None,
+    subtitle: str | None = None,
     **kwargs,
 ) -> go.Figure:
     """Create a bar plot.
