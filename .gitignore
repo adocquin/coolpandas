@@ -5,6 +5,7 @@ __pycache__
 .python-version
 .pytest_cache
 .metals
+.DS_Store
 cb_model.onnx
 encoding.json
 htmlcov
