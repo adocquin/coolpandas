@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "coolpandas"
-version = "0.3.2"
+version = "0.4.0"
 authors = [
   { name="Avel Docquin", email="adocquin@outlook.com" },
   ]
@@ -19,6 +19,9 @@ dependencies = [
   "nbformat ~= 5.7.0",
   "ipython ~= 8.6.0",
   "openrouteservice ~= 2.3.3",
+  "redshift-connector ~= 2.0.910",
+  "statsmodels ~= 0.14.0",
+  "jinja2 ~= 3.1.2",
   "pytest-cov ~= 4.0.0",
   "black ~= 22.10.0",
   "pylint ~= 2.15.5",
@@ -48,6 +51,7 @@ packages = [
   "coolpandas.eda",
   "coolpandas.evaluate",
   "coolpandas.plot",
+  "coolpandas.stats",
   "coolpandas.transform",
   "coolpandas.utils",
   ]
