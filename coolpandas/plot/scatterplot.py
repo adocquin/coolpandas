@@ -37,5 +37,4 @@ def scatterplot(
         height=400,
         **kwargs,
     )
-    fig.update_traces(width=0.5)
     return fig
