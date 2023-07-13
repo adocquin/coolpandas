@@ -5,3 +5,4 @@ from .distplot import distplot
 from .geoplot import geoplot
 from .lineplot import lineplot
 from .mapplot import mapplot
+from .scatterplot import scatterplot
