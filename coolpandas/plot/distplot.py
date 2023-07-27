@@ -9,8 +9,8 @@ from .style import custom_template, format_title
 def distplot(
     data_frame: pd.DataFrame,
     x_axis: str,
-    y_axis: str,
-    title: str,
+    y_axis: str | None = None,
+    title: str = "",
     subtitle: str | None = None,
     **kwargs,
 ) -> go.Figure:

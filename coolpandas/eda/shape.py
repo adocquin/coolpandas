@@ -22,6 +22,8 @@ def get_shape(
         display(data_frame.head())
         print(f"Number of rows: {summary.get('rows_number')}")
         print(f"Number of columns: {summary.get('columns_number')}")
-        print(f"Columns name: {summary['columns_name']}")
-        print(f"Columns type: {summary['columns_type']}")
+        columns_info: list[tuple[str, str]] = list(
+            zip(summary["columns_name"], summary["columns_type"])
+        )
+        print(f"Columns: {columns_info}")
     return summary

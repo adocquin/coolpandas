@@ -1,6 +1,7 @@
 """Plot module for coolpandas."""
 from .barplot import barplot
 from .boxplot import boxplot
+from .confusion_matrix import confusion_matrix
 from .distplot import distplot
 from .geoplot import geoplot
 from .lineplot import lineplot

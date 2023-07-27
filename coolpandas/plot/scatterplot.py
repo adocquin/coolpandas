@@ -10,7 +10,7 @@ def scatterplot(
     data_frame: pd.DataFrame,
     x_axis: str,
     y_axis: str,
-    title: str,
+    title: str = "",
     subtitle: str | None = None,
     **kwargs,
 ) -> go.Figure:

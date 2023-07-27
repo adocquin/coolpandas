@@ -3,7 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 
-from coolpandas.plot import mapplot
+from coolpandas.plot import confusion_matrix
 
 
 def get_correlation(
@@ -24,10 +24,6 @@ def get_correlation(
     truncate: callable = lambda x: math.trunc(100 * x) / 100
     correlation_matrix = correlation_matrix.applymap(truncate)
     if plot:
-        mask = np.triu(np.ones_like(correlation_matrix, dtype=bool))
-        mapplot(
-            correlation_matrix.mask(mask),
-            title=f"{method.capitalize()} correlation map",
-            **kwargs,
-        ).show()
+        fig = confusion_matrix(data_frame, **kwargs)
+        fig.show()
     return correlation_matrix

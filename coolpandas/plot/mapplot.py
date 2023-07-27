@@ -8,7 +8,7 @@ from .style import custom_template, format_title
 
 def mapplot(
     matrix: pd.DataFrame,
-    title: str,
+    title: str = "",
     subtitle: str | None = None,
     width: int = 1000,
     height: int = 1000,

@@ -10,7 +10,7 @@ def geoplot(
     data_frame: pd.DataFrame,
     lat: str,
     lon: str,
-    title: str,
+    title: str = "",
     subtitle: str | None = None,
     **kwargs,
 ) -> go.Figure:
