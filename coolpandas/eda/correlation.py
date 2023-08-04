@@ -25,6 +25,5 @@ def get_correlation(
     correlation_matrix = correlation_matrix.applymap(truncate)
     if plot:
         fig: Figure = confusion_matrix(data_frame, **kwargs)
-        fig.show()
         return correlation_matrix, fig
     return correlation_matrix, None
