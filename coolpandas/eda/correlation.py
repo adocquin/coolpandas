@@ -1,14 +1,14 @@
 import math
 
-import numpy as np
 import pandas as pd
+from plotly.graph_objs import Figure
 
 from coolpandas.plot import confusion_matrix
 
 
 def get_correlation(
     data_frame: pd.DataFrame, method: str = "pearson", plot: bool = True, **kwargs
-) -> pd.DataFrame:
+) -> tuple[pd.DataFrame, Figure | None]:
     """Get the correlations of a DataFrame.
 
     Args:
@@ -24,6 +24,7 @@ def get_correlation(
     truncate: callable = lambda x: math.trunc(100 * x) / 100
     correlation_matrix = correlation_matrix.applymap(truncate)
     if plot:
-        fig = confusion_matrix(data_frame, **kwargs)
+        fig: Figure = confusion_matrix(data_frame, **kwargs)
         fig.show()
-    return correlation_matrix
+        return correlation_matrix, fig
+    return correlation_matrix, None
